@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script
+    type="text/javascript"
+    src="/js/lib/dummy.js"
+    
+  ></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+
+  <style id="compiled-css" type="text/css">
+    
+
+    /* EOS */
+  </style>
+
+  <script id="insert"></script>
+
+</head>
+<body>
+    <div style="position: center;width:1000px;height:1000px;">
+<!--左上角V向量-->
+  <div style="position:right top;width:500px;height:500px;background-color:AliceBlue;
+  border-radius: 50px 20px;border: 2px solid red;">
+    <div style="font-size:50px;padding:20px;">
+      V
+    </div>
+    <div style="border-bottom: 5px solid black;"></div>
+    <div>
+      <div style="position:absolute;left: 100px;top: 150px;font-size:50px;padding:20px;">
+        <label >X</label>
+        <input type="number" id="Vx" name="Vx" style="font-size:30px;width:220px;"onchange="seting()" value="0">
+      </div>
+    </div>
+    <div style="position:absolute;left: 100px;top: 250px;font-size:50px;padding:20px;">
+      <label >Y</label>
+      <input type="number" id="Vy" name="Vy" style="font-size:30px;width:220px;"onchange="seting()" value="0">
+    </div>
+     <div style="position:absolute;left: 100px;top: 350px;font-size:50px;padding:20px;">
+      <label >Z</label>
+      <input type="number" id="Vz" name="Vz" style="font-size:30px;width:220px;"onchange="seting()" value="0">
+    </div>
+  </div>
+  <!--左下角W向量-->
+  <div style="position:right bottom;width:500px;height:500px;background-color:AliceBlue;
+  border-radius: 50px 20px;border: 2px solid red;">
+    <div style="font-size:50px;padding:20px;">
+      W
+    </div>
+    <div style="border-bottom: 5px solid black;"></div>
+    <div>
+      <div style="position:absolute;left: 100px;top: 650px;font-size:50px;padding:20px;">
+        <label >X</label>
+        <input type="number" id="Wx" name="Wx" style="font-size:30px;width:220px;"onchange="seting()" value="0">
+      </div>
+    </div>
+    <div style="position:absolute;left: 100px;top: 750px;font-size:50px;padding:20px;">
+      <label >Y</label>
+      <input type="number" id="Wy" name="Wy" style="font-size:30px;width:220px;"onchange="seting()" value="0">
+    </div>
+     <div style="position:absolute;left: 100px;top: 850px;font-size:50px;padding:20px;">
+      <label >Z</label>
+      <input type="number" id="Wz" name="Wz" style="font-size:30px;width:220px;"onchange="seting()" value="0">
+    </div>
+  </div>
+<!--右邊向量結果-->
+  <div style="position:absolute;left:520px;top:5px;width:500px;height:1000px;background-color:AliceBlue;border-radius: 50px 20px;border: 2px solid red;">
+  <div style="font-size:50px;position:absolute;left:50px;top:20px;width:500;height:500;">
+    inner product
+    <div style="border-bottom: 5px solid black;width:400px;"></div>
+  </div>
+    <div style="font-size:50px;position:absolute;left:50px;top:120px;">
+      V dot W
+       <input type="number" id="VW" name="VW" style="font-size:30px;width:220px;">
+    </div>
+    <div style="font-size:40px;position:absolute;left:50px;top:520px;width:500;height:500;">
+    V x W (vector product)
+    <div style="border-bottom: 5px solid black;width:400px;"></div>
+  </div>
+   <div style="font-size:50px;position:absolute;left:100px;top:620px;">
+      X
+       <input type="number" id="VWx" name="VWx" style="font-size:30px;width:220px;">
+    </div>
+    <div style="font-size:50px;position:absolute;left:100px;top:720px;">
+      Y
+       <input type="number" id="VWy" name="VWy" style="font-size:30px;width:220px;">
+    </div>
+    <div style="font-size:50px;position:absolute;left:100px;top:820px;">
+      Z
+       <input type="number" id="VWz" name="VWz" style="font-size:30px;width:220px;">
+    </div>
+  </div>
+</div>
+<script src="https://threejs.org/build/three.min.js"></script>
+
+    <script type="text/javascript">//<![CDATA[
+
+
+var Vx=document.getElementById("Vx").value;
+var Vy=document.getElementById("Vy").value;
+var Vz=document.getElementById("Vz").value;
+var Wx=document.getElementById("Wx").value;
+var Wy=document.getElementById("Wy").value;
+var Wz=document.getElementById("Wz").value;
+var V = new THREE.Vector3(0, 0, 0);
+var W = new THREE.Vector3(0, 0, 0);
+var dot = V.clone().dot(W);
+var product = V.clone().cross(W);
+function seting (){
+  var Vx=document.getElementById("Vx").value;
+  var Vy=document.getElementById("Vy").value;
+  var Vz=document.getElementById("Vz").value;
+  var Wx=document.getElementById("Wx").value;
+  var Wy=document.getElementById("Wy").value;
+  var Wz=document.getElementById("Wz").value;
+	var V = new THREE.Vector3(Vx, Vy, Vz);
+  var W = new THREE.Vector3(Wx, Wy, Wz);
+  var dot = V.clone().dot(W);
+	var product = V.clone().cross(W);
+  document.getElementById("VW").value = dot;
+  document.getElementById("VWx").value = product.x;
+  document.getElementById("VWy").value = product.y;
+  document.getElementById("VWz").value = product.z;
+}
+
+
+
+
+
+  //]]></script>
+
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: "hc2zkd6g"
+      }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+  </script>
+
+
+</body>
+</html>
